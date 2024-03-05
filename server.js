@@ -31,7 +31,11 @@ app.get('/', (req, res) => {
     res.send({ message: 'Welcome to the backend server!' });
 });
 
-
+// To serve static files from build directoery
+app.use(express.static("build"));
+app.get("*",(req,res) =>{
+  res.sendFile((path.resolve(__dirname,"build","index.html")))
+})
 
 // Example route using environment variables
 app.get('/config', (req, res) => {
